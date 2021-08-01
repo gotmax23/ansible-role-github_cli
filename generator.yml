@@ -1,0 +1,12 @@
+---
+- name: Generate files
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    generator_readme_template: "{{ generator_role_path }}/generator/README.md.j2"
+
+  roles:
+    - gotmax23.generator
+
+# vim: set filetype=yaml.ansible:

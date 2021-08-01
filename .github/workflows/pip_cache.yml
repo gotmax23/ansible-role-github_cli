@@ -1,0 +1,34 @@
+---
+name: Generate pip cache
+
+'on':
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  cache:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "Set up Python 3.9"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Generate cache keys
+        id: keys
+        run: |
+          echo ::set-output name=pip_cache_dir::$(pip cache dir)
+          echo ::set-output name=date::$(date +%Y_%g)
+
+      - name: Pip Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.keys.outputs.pip_cache_dir }}
+          key: ansible-pip-${{ steps.keys.outputs.date }}
+
+      - name: Install all needed pip packages
+        run: |
+          pip3 install -U pip
+          pip3 install wheel
+          pip3 install molecule molecule-podman ansible-core ansible yamllint ansible-lint

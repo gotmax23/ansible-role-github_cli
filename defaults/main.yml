@@ -1,0 +1,16 @@
+---
+# defaults file for github_cli
+
+# By default, `github_cli_install_method` is dynamically assigned based on your distribution.
+_github_cli_install_method:
+  Archlinux: distro_package  # Default for Archlinux
+  default: repo  # Default for all other distros
+github_cli_install_method: "{{ _github_cli_install_method[ansible_distribution] | default(_github_cli_install_method['default']) }}"
+
+# Whether to check the RPM repo signing key's fingerprint before importing it.
+# Note that this is option is only available for the RPM repo and not the apt one.
+github_cli_check_rpm_key_fingerprint: true
+
+# See [here](https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-apt)
+# for list for more information.
+github_cli_apt_repo_codename: stable

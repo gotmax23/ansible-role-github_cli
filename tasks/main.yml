@@ -1,0 +1,77 @@
+---
+# tasks file for github_cli
+- name: Ensure variables are set correctly
+  ansible.builtin.import_tasks: assert.yml
+  delegate_to: localhost
+  vars:
+    ansible_connection: local
+  become: false
+
+- name: Add Github CLI repo on RPM-based distributions
+  when:
+    - github_cli_install_method == "repo"
+    - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
+  block:
+    - name: Import Github CLI RPM Key
+      ansible.builtin.rpm_key:
+        key: "{{ github_cli_rpm_key_url }}"
+        fingerprint: "{{ github_cli_rpm_key_fingerprint if github_cli_check_rpm_key_fingerprint | bool else omit }}"
+
+    - name: Import Github CLI RPM Repository
+      ansible.builtin.get_url:
+        url: "{{ github_cli_rpm_repo_conf_url }}"
+        dest: "{{ github_cli_rpm_repo_conf_dest }}"
+        owner: root
+        group: root
+        mode: "0644"
+
+- name: Add Github CLI repo on apt-based distributions
+  when:
+    - github_cli_install_method == "repo"
+    - ansible_pkg_mgr == "apt"
+  block:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Ensure that gpg, apt-transport-https, and curl are installed (apt-based distros)
+      ansible.builtin.apt:
+        name: [ "gpg", "apt-transport-https", "curl" ]
+
+    - name: Ensure that apt keyring directory exists
+      ansible.builtin.file:
+        path: "{{ github_cli_apt_key_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Import Github CLI Apt Key
+      ansible.builtin.shell:
+        cmd: "{{ github_cli_apt_key_import_cmd }}"  # noqa command-instead-of-shell
+        creates: "{{ github_cli_apt_key_dest }}"
+
+    - name: Get dpkg architecture
+      register: github_cli_dpkg_arch
+      changed_when: false
+      ansible.builtin.command:
+        cmd: "dpkg --print-architecture"
+
+    - name: Import Github CLI Apt Repository
+      ansible.builtin.apt_repository:
+        repo: "{{ github_cli_apt_repo }}"
+        filename: github-cli
+        update_cache: false  # Package cache refreshed in next task
+
+- name: Install Github CLI package
+  when:
+    - github_cli_install_method in [ "repo", "distro_package" ]
+  ansible.builtin.package:
+    name: "{{ github_cli_distro_package_name if github_cli_install_method == 'distro_package' else 'gh' }}"
+    update_cache: true
+
+# TODO: AUR Support
+# TODO: Github Releases Tarballs
+# TODO: Github Releases Other Packages
+# TODO: Generate bash, zsh, and fish completions

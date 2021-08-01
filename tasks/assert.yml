@@ -1,0 +1,33 @@
+---
+- name: Ensure that github_cli_install_method is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - github_cli_install_method is defined
+      - github_cli_install_method in [ "repo", "distro_package" ]
+
+- name: Ensure that github_cli_check_rpm_key_fingerprint is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - github_cli_check_rpm_key_fingerprint is defined
+      - github_cli_check_rpm_key_fingerprint is boolean
+
+- name: Ensure that github_cli_apt_repo_codename is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - github_cli_apt_repo_codename is defined
+      - github_cli_apt_repo_codename is string
+
+- name: Ensure that Guthub CLI supports ansible_architecture
+  ansible.builtin.assert:
+    quiet: true
+    that: ansible_architecture in [ "i386", "x86_64", "aarch64", "armv7l", "armv6l" ]
+
+- name: Fail if the current `github_cli_install_method` is incompatable
+  when:
+    - (github_cli_install_method == "distro_package" and github_cli_distro_package_name == "unsupported") or
+      (github_cli_install_method == "repo" and ansible_distribution == "Archlinux")
+  fail:
+    msg: "You are using the `github_cli_install_method={{ github_cli_install_method }}` option on a non-supported distribution."

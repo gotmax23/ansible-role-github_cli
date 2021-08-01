@@ -1,0 +1,34 @@
+---
+#
+# Ansible managed
+#
+dependency:
+  name: galaxy
+  options:
+    force: "${GALAXY_FORCE:-true}"
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+driver:
+  name: docker
+platforms:
+  - name: "github_cli-${image:-debian}-${tag:-latest}${TOX_ENVNAME}"
+    image: "quay.io/gotmax23/${image:-debian}-systemd:${tag:-latest}"
+    command: ""
+    pre_build_image: true
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
+      - /sys/fs/cgroup/systemd
+      - /var/lib/journal
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      stdout_callback: yaml
+verifier:
+  name: ansible

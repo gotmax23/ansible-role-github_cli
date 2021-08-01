@@ -1,0 +1,8 @@
+---
+- name: Verify
+  hosts: all
+
+  tasks:
+    - name: Run gh --version
+      ansible.builtin.command:
+        cmd: gh --version
