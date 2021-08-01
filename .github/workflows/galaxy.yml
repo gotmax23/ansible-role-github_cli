@@ -6,7 +6,7 @@ name: Release role to Ansible Galaxy
 
 'on':
   release:
-    types: [ created, edited, published, released ]
+    types: [ edited, published ]
   workflow_dispatch:
 
 jobs:
