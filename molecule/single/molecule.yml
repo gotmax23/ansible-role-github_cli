@@ -23,5 +23,7 @@ provisioner:
   config_options:
     defaults:
       stdout_callback: yaml
-verifier:
-  name: ansible
+  playbooks:
+    converge: "../playbooks/${CONVERGE_PLAYBOOK:-converge.yml}"
+    prepare: "../playbooks/${PREPARE_PLAYBOOK:-prepare.yml}"
+    verify: "../playbooks/${VERIFY_PLAYBOOK:-verify.yml}"
