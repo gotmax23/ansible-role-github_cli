@@ -1,8 +1,6 @@
-### Installation Methods
+### Available Installation Methods
 
-This role provides a couple different installation sources that are available on different distributions and platforms. You may choose your installation by setting `github_cli_install_method` to the one of the values outlined below.
-
-
+This role allows you to choose which source to install Github CLI from. You may override the default installation method by setting `github_cli_install_method` to the one of the values outlined below.
 
 #### `github_cli_install_method=repo`
 

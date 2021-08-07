@@ -13,11 +13,9 @@ For right now, I only test this role using the latest release of the `ansible` p
 
 ## Role Variables
 
-### Installation Methods
+### Available Installation Methods
 
-This role provides a couple different installation sources that are available on different distributions and platforms. You may choose your installation by setting `github_cli_install_method` to the one of the values outlined below.
-
-
+This role allows you to choose which source to install Github CLI from. You may override the default installation method by setting `github_cli_install_method` to the one of the values outlined below.
 
 #### `github_cli_install_method=repo`
 
@@ -54,7 +52,7 @@ github_cli_install_method: "{{ _github_cli_install_method[ansible_distribution] 
 github_cli_check_rpm_key_fingerprint: true
 
 # See [here](https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-apt)
-# for list for more information.
+# for more information. This role's default is based on Github's recommendation.
 github_cli_apt_repo_codename: stable
 
 ```
@@ -91,10 +89,10 @@ Maxwell G (@gotmax23)
 
 [badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-github_cli.svg
 [link-license]: https://github.com/gotmax23/ansible-role-github_cli/blob/main/LICENSE
-[badge-role]: https://img.shields.io/ansible/role/55854.svg
+[badge-role]: https://img.shields.io/ansible/role/55882.svg
 [link-galaxy]: https://galaxy.ansible.com/gotmax23/github_cli
-[badge-quality]: https://img.shields.io/ansible/quality/55854.svg
-[badge-downloads]: https://img.shields.io/ansible/role/d/55854.svg
+[badge-quality]: https://img.shields.io/ansible/quality/55882.svg
+[badge-downloads]: https://img.shields.io/ansible/role/d/55882.svg
 [badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-github_cli/svg
 [link-version]: https://github.com/gotmax23/ansible-role-github_cli/releases
 [badge-ci]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml/badge.svg?branch=main
