@@ -97,7 +97,7 @@ Maxwell G (@gotmax23)
 [link-galaxy]: https://galaxy.ansible.com/gotmax23/github_cli
 [badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-github_cli.svg
 [link-version]: https://github.com/gotmax23/ansible-role-github_cli/releases
-[badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-github_cli
+[badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-github_cli/latest.svg
 [link-commits-since]: https://github.com/gotmax23/ansible-role-github_cli/commits/main
 [badge-quality]: https://img.shields.io/ansible/quality/55882.svg
 [badge-downloads]: https://img.shields.io/ansible/role/d/55882.svg
