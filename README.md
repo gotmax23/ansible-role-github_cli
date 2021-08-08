@@ -1,8 +1,8 @@
 # Ansible Role: github_cli
 [![MIT Licensed][badge-license]][link-license]
 [![Role gotmax23.github_cli][badge-role]][link-galaxy]
-[![Commits since last version][badge-commits-since]][link-commits-since]
 [![Role Version][badge-version]][link-version]
+[![Commits since last version][badge-commits-since]][link-commits-since]
 [![Galaxy Role Quality][badge-quality]][link-galaxy]
 [![Galaxy Role Downloads][badge-downloads]][link-galaxy]
 [![Github Actions CI][badge-ci]][link-ci]
