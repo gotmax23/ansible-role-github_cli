@@ -5,6 +5,8 @@
 _github_cli_install_method:
   Archlinux: distro_package  # Default for Archlinux
   default: repo  # Default for all other distros
+# As explained above, you may override this variable.
+# Just make sure the option you chooose supports your distro.
 github_cli_install_method: "{{ _github_cli_install_method[ansible_distribution] | default(_github_cli_install_method['default']) }}"
 
 # Whether to check the RPM repo signing key's fingerprint before importing it.
