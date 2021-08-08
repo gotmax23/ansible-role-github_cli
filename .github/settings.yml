@@ -2,7 +2,6 @@
 #
 # Ansible managed
 #
-
 repository:
   description: Ansible role to install Github CLI (gh).
   homepage: "https://galaxy.ansible.com/gotmax23/github_cli"
