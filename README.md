@@ -5,7 +5,8 @@
 [![Commits since last version][badge-commits-since]][link-commits-since]
 [![Galaxy Role Quality][badge-quality]][link-galaxy]
 [![Galaxy Role Downloads][badge-downloads]][link-galaxy]
-[![Github Actions CI][badge-ci]][link-ci]
+[![Github Actions Molecule workflow status][badge-molecule-workflow]][link-molecule-workflow]
+[![Github Actions Galaxy workflow status][badge-galaxy-workflow]][link-galaxy-workflow]
 
 Ansible role to install Github CLI (gh).
 
@@ -101,6 +102,8 @@ Maxwell G (@gotmax23)
 [link-commits-since]: https://github.com/gotmax23/ansible-role-github_cli/commits/main
 [badge-quality]: https://img.shields.io/ansible/quality/55882.svg
 [badge-downloads]: https://img.shields.io/ansible/role/d/55882.svg
-[badge-ci]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml/badge.svg?branch=main
-[link-ci]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml
+[badge-molecule-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml/badge.svg?branch=main
+[link-molecule-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml
+[badge-galaxy-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/galaxy.yml/badge.svg
+[link-galaxy-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/galaxy.yml
 [link-defaults]: https://github.com/gotmax23/ansible-role-github_cli/blob/main/defaults.yml
