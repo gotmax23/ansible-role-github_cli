@@ -6,7 +6,11 @@ name: Lint code and run Molecule tests
 
 'on':
   push:
+    paths-ignore:
+      - README.md
   pull_request:
+    paths-ignore:
+      - README.md
   workflow_dispatch:
   schedule:
     - cron: "15 0 * * 0"
