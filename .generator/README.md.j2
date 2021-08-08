@@ -31,11 +31,13 @@ For right now, I only test this role using the latest release of the `ansible` p
 
 ## Role Variables
 
-{% include "install_method_include.md" %}
+{% if generator_install_methods.stat.exists | bool %}
+{% include "install_methods.md" %}
 
 
 ----
 
+{% endif %}
 Here are this role's variables and their default values, as set in [`defaults/main.yml`][link-defaults]. If you'd like, you may change them to customize this role's behavior.
 
 ``` yaml
