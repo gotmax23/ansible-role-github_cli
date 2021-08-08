@@ -4,7 +4,7 @@
 ##################
 
 ## install_method: repo
-### Vars for RPM-based distros
+### Vars for RPM-based distros.
 github_cli_rpm_key_url: "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc99b11deb97541f0"
 
 github_cli_rpm_key_fingerprint: "2CA3 2056 ED20 6CB8 1F44 A8CA C99B 11DE B975 41F0"
@@ -21,7 +21,7 @@ github_cli_rpm_repo_conf_dest: "{{ github_cli_rpm_repo_conf_dir }}/gh-cli.repo"
 #########
 
 ### Vars for Apt-based distros
-github_cli_apt_key_import_cmd: "curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg"
+github_cli_apt_key_import_cmd: "curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o {{ github_cli_apt_key_dest }}"
 
 github_cli_apt_key_dir: "/usr/share/keyrings"
 

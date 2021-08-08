@@ -44,10 +44,20 @@ Here are this role's variables and their default values, as set in [`defaults/ma
 ---
 # defaults file for github_cli
 
+# Options:
+# - `present` ensures that Github CLI is installed
+# - `absent` ensures that Github CLI is not installed.
+
+# If you would like to switch installation methods, you will have to run this
+# role once with the old setting using `state=absent`, and then run it again
+# with the new setting using `state=present`.
+github_cli_state: present
+
 # By default, `github_cli_install_method` is dynamically assigned based on your distribution.
 _github_cli_install_method:
   Archlinux: distro_package  # Default for Archlinux
   default: repo  # Default for all other distros
+
 # As explained above, you may override this variable.
 # Just make sure the option you chooose supports your distro.
 github_cli_install_method: "{{ _github_cli_install_method[ansible_distribution] | default(_github_cli_install_method['default']) }}"
@@ -69,9 +79,41 @@ github_cli_apt_repo_codename: stable
   hosts: all
   become: true
   tasks:
-    - name: "Include gotmax23.github_cli"
-      include_role:
+    - name: Install Github CLI
+      vars:
+        github_cli_state: present
+      ansible.builtin.include_role:
         name: "gotmax23.github_cli"
+
+    - name: Check if Github CLI is present
+      register: gh_state
+      changed_when: false
+      failed_when: false
+      ansible.builtin.command:
+        cmd: which gh
+
+    - name: Ensure Github CLI is installed
+      ansible.builtin.assert:
+        quiet: true
+        that: gh_state.rc == 0
+
+    - name: Uninstall Github CLI
+      vars:
+        github_cli_state: absent
+      ansible.builtin.include_role:
+        name: "gotmax23.github_cli"
+
+    - name: Check if Github CLI is present
+      register: gh_state_2
+      changed_when: false
+      failed_when: false
+      ansible.builtin.command:
+        cmd: which gh
+
+    - name: Ensure Github CLI is uninstalled
+      ansible.builtin.assert:
+        quiet: true
+        that: gh_state_2.rc != 0
 
 ```
 

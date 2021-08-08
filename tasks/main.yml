@@ -7,17 +7,19 @@
     ansible_connection: local
   become: false
 
-- name: Add Github CLI repo on RPM-based distributions
+- name: Add/Remove Github CLI repo on RPM-based distributions
   when:
     - github_cli_install_method == "repo"
     - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
   block:
-    - name: Import Github CLI RPM Key
+    - name: Import Github CLI RPM key
       ansible.builtin.rpm_key:
+        state: "{{ github_cli_state }}"
         key: "{{ github_cli_rpm_key_url }}"
         fingerprint: "{{ github_cli_rpm_key_fingerprint if github_cli_check_rpm_key_fingerprint | bool else omit }}"
 
-    - name: Import Github CLI RPM Repository
+    - name: Import Github CLI RPM repository
+      when: github_cli_state == "present"
       ansible.builtin.get_url:
         url: "{{ github_cli_rpm_repo_conf_url }}"
         dest: "{{ github_cli_rpm_repo_conf_dest }}"
@@ -25,7 +27,13 @@
         group: root
         mode: "0644"
 
-- name: Add Github CLI repo on apt-based distributions
+    - name: Remove Github CLI RPM repository if necessary
+      when: github_cli_state == "absent"
+      ansible.builtin.file:
+        path: "{{ github_cli_rpm_repo_conf_dest }}"
+        state: absent
+
+- name: Add Github CLI repo on Apt-based distributions
   when:
     - github_cli_install_method == "repo"
     - ansible_pkg_mgr == "apt"
@@ -39,7 +47,7 @@
       ansible.builtin.apt:
         name: [ "gpg", "apt-transport-https", "curl" ]
 
-    - name: Ensure that apt keyring directory exists
+    - name: Ensure that Apt keyring directory exists
       ansible.builtin.file:
         path: "{{ github_cli_apt_key_dir }}"
         state: directory
@@ -47,10 +55,17 @@
         group: root
         mode: "0755"
 
-    - name: Import Github CLI Apt Key
+    - name: Import Github CLI Apt key
+      when: github_cli_state == "present"
       ansible.builtin.shell:
         cmd: "{{ github_cli_apt_key_import_cmd }}"  # noqa command-instead-of-shell
         creates: "{{ github_cli_apt_key_dest }}"
+
+    - name: Remove Github CLI Apt key if necesarry
+      when: github_cli_state == "absent"
+      ansible.builtin.file:
+        path: "{{ github_cli_apt_key_dest }}"
+        state: absent
 
     - name: Get dpkg architecture
       register: github_cli_dpkg_arch
@@ -58,8 +73,9 @@
       ansible.builtin.command:
         cmd: "dpkg --print-architecture"
 
-    - name: Import Github CLI Apt Repository
+    - name: Import/Remove Github CLI Apt repository
       ansible.builtin.apt_repository:
+        state: "{{ github_cli_state }}"
         repo: "{{ github_cli_apt_repo }}"
         filename: github-cli
         update_cache: false  # Package cache refreshed in next task
@@ -68,6 +84,7 @@
   when:
     - github_cli_install_method in [ "repo", "distro_package" ]
   ansible.builtin.package:
+    state: "{{ github_cli_state }}"
     name: "{{ github_cli_distro_package_name if github_cli_install_method == 'distro_package' else 'gh' }}"
     update_cache: true
 

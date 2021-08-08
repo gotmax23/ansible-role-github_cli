@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    github_cli_state: present
+
+  tasks:
+    - name: "Include gotmax23.github_cli"
+      include_role:
+        name: "gotmax23.github_cli"

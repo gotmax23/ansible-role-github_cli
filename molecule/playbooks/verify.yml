@@ -4,5 +4,6 @@
 
   tasks:
     - name: Run gh --version
+      when: github_cli_state == "present"
       ansible.builtin.command:
         cmd: gh --version

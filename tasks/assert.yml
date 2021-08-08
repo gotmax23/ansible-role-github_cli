@@ -1,4 +1,11 @@
 ---
+- name: Ensure that github_cli_state is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - github_cli_state is defined
+      - github_cli_state in [ "present", "absent" ]
+
 - name: Ensure that github_cli_install_method is set correctly
   ansible.builtin.assert:
     quiet: true
