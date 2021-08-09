@@ -4,6 +4,7 @@
     quiet: true
     that:
       - github_cli_state is defined
+      - github_cli_state is string
       - github_cli_state in [ "present", "absent" ]
 
 - name: Ensure that github_cli_install_method is set correctly
