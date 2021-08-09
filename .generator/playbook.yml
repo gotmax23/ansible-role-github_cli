@@ -1,10 +1,9 @@
 ---
-# playbook.yml
 - name: Install Github CLI
   hosts: all
   become: true
 
   tasks:
-    - name: "Include gotmax23.github_cli"
-      include_role:
+    - name: Install Github CLI
+      ansible.builtin.include_role:
         name: "gotmax23.github_cli"

@@ -75,45 +75,14 @@ github_cli_apt_repo_codename: stable
 ## Example Playbook
 ``` yaml
 ---
-- name: Converge
+- name: Install Github CLI
   hosts: all
   become: true
+
   tasks:
-    - name: Install Github CLI
-      vars:
-        github_cli_state: present
+    - name: "Include gotmax23.github_cli"
       ansible.builtin.include_role:
         name: "gotmax23.github_cli"
-
-    - name: Check if Github CLI is present
-      register: gh_state
-      changed_when: false
-      failed_when: false
-      ansible.builtin.command:
-        cmd: which gh
-
-    - name: Ensure Github CLI is installed
-      ansible.builtin.assert:
-        quiet: true
-        that: gh_state.rc == 0
-
-    - name: Uninstall Github CLI
-      vars:
-        github_cli_state: absent
-      ansible.builtin.include_role:
-        name: "gotmax23.github_cli"
-
-    - name: Check if Github CLI is present
-      register: gh_state_2
-      changed_when: false
-      failed_when: false
-      ansible.builtin.command:
-        cmd: which gh
-
-    - name: Ensure Github CLI is uninstalled
-      ansible.builtin.assert:
-        quiet: true
-        that: gh_state_2.rc != 0
 
 ```
 
