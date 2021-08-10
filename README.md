@@ -11,6 +11,7 @@
 Ansible role to install Github CLI (gh).
 
 ## Requirements
+
 For right now, I only test this role using the latest release of the `ansible` pip package, which includes all the collections that are no longer part of `ansible-core`. This is the supported method. However, if you choose to use `ansible-core` or still use Ansible 2.9, you must manually install the following collections:
 - community.general
 
@@ -80,7 +81,7 @@ github_cli_apt_repo_codename: stable
   become: true
 
   tasks:
-    - name: "Include gotmax23.github_cli"
+    - name: Install Github CLI
       ansible.builtin.include_role:
         name: "gotmax23.github_cli"
 
