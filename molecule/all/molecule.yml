@@ -5,7 +5,7 @@
 dependency:
   name: galaxy
   options:
-    force: "${GALAXY_FORCE:-false}"
+    force: ${GALAXY_FORCE:-false}
 lint: |
   set -e
   yamllint .
