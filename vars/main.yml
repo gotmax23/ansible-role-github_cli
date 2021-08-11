@@ -2,6 +2,10 @@
 # vars file for github_cli
 #
 ##################
+_installw:
+  present: Install
+  absent: Remove
+installw: "{{ _installw[github_cli_state] }}"
 
 ## install_method: repo
 ### Vars for RPM-based distros.

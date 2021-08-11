@@ -7,12 +7,12 @@
     ansible_connection: local
   become: false
 
-- name: Add/Remove Github CLI repo on RPM-based distributions
+- name: "{{ installw }} Github CLI repo on RPM-based distributions"
   when:
     - github_cli_install_method == "repo"
     - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
   block:
-    - name: Import Github CLI RPM key
+    - name: "{{ installw }} Github CLI RPM key"
       ansible.builtin.rpm_key:
         state: "{{ github_cli_state }}"
         key: "{{ github_cli_rpm_key_url }}"
@@ -33,7 +33,7 @@
         path: "{{ github_cli_rpm_repo_conf_dest }}"
         state: absent
 
-- name: Add Github CLI repo on Apt-based distributions
+- name: "{{ installw }} Github CLI repo on Apt-based distributions"
   when:
     - github_cli_install_method == "repo"
     - ansible_pkg_mgr == "apt"
@@ -68,14 +68,14 @@
       ansible.builtin.command:
         cmd: "dpkg --print-architecture"
 
-    - name: Import/Remove Github CLI Apt repository
+    - name: "{{ installw }} Github CLI Apt repository"
       ansible.builtin.apt_repository:
         state: "{{ github_cli_state }}"
         repo: "{{ github_cli_apt_repo }}"
         filename: github-cli
         update_cache: false  # Package cache refreshed in next task
 
-- name: Install Github CLI package
+- name: "{{ installw }} Github CLI package"
   when:
     - github_cli_install_method in [ "repo", "distro_package" ]
   ansible.builtin.package:
