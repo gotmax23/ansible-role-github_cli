@@ -4,7 +4,7 @@ galaxy_info:
 
   author: gotmax23
 
-  description: Ansible role to install Github CLI (gh).
+  description: Ansible role that installs Github CLI (gh).
 
   license: MIT
 

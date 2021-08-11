@@ -8,7 +8,7 @@
 [![Github Actions Molecule workflow status][badge-molecule-workflow]][link-molecule-workflow]
 [![Github Actions Galaxy workflow status][badge-galaxy-workflow]][link-galaxy-workflow]
 
-Ansible role to install Github CLI (gh).
+Ansible role that installs Github CLI (gh).
 
 ## Requirements
 
