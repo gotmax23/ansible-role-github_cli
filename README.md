@@ -118,4 +118,4 @@ Maxwell G (@gotmax23)
 [link-molecule-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml
 [badge-galaxy-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/galaxy.yml/badge.svg
 [link-galaxy-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/galaxy.yml
-[link-defaults]: https://github.com/gotmax23/ansible-role-github_cli/blob/main/defaults.yml
+[link-defaults]: https://github.com/gotmax23/ansible-role-github_cli/blob/main/defaults/main.yml
