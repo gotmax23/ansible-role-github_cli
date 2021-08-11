@@ -45,7 +45,7 @@ jobs:
         run: |
           pip3 install -U pip
           pip3 install wheel
-          pip3 install molecule molecule-podman ansible yamllint ansible-lint
+          pip3 install molecule molecule-podman ansible-core yamllint ansible-lint
 
       - name: Run molecule lint
         run: molecule lint -s single
@@ -114,7 +114,7 @@ jobs:
         run: |
           pip3 install -U pip
           pip3 install wheel
-          pip3 install molecule molecule-podman ansible
+          pip3 install molecule molecule-podman ansible-core
 
       # This is necessary to allow running systemd in rootless containers.
       - name: Start systemd user service
