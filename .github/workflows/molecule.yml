@@ -123,7 +123,9 @@ jobs:
           sleep 1
 
       - name: Run molecule test
-        run: molecule test -s single
+        run: |
+          ansible-galaxy collection install containers.podman
+          molecule test -s single
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
