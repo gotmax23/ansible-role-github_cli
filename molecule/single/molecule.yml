@@ -27,17 +27,3 @@ provisioner:
     converge: "../playbooks/${CONVERGE_PLAYBOOK:-converge.yml}"
     prepare: "../playbooks/${PREPARE_PLAYBOOK:-prepare.yml}"
     verify: "../playbooks/${VERIFY_PLAYBOOK:-verify.yml}"
-scenario:
-  test_sequence:
-    - dependency
-    - lint
-    - cleanup
-    - destroy
-    - syntax
-    - create
-    - prepare
-    - converge
-    - side_effect
-    - verify
-    - cleanup
-    - destroy

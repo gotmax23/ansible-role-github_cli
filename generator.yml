@@ -3,23 +3,6 @@
   hosts: localhost
   gather_facts: false
 
-  vars:
-    generator_molecule_scenario:
-      test_sequence:
-        - dependency
-        - lint
-        - cleanup
-        - destroy
-        - syntax
-        - create
-        - prepare
-        - converge
-        # - idempotence
-        - side_effect
-        - verify
-        - cleanup
-        - destroy
-
   roles:
     - gotmax23.generator
 
