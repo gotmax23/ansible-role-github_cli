@@ -67,11 +67,14 @@ github_cli_install_method: "{{ _github_cli_install_method[ansible_distribution] 
 # Note that this is option is only available for the RPM repo and not the apt one.
 github_cli_check_rpm_key_fingerprint: true
 
-# See [here](https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-apt)
-# for more information. This role's default is based on Github's recommendation.
+# See [here][1] for more information.
+# This role's default is based on Github's recommendation.
 github_cli_apt_repo_codename: stable
 
 ```
+
+\[1]: https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-apt
+
 
 ## Example Playbook
 ``` yaml
