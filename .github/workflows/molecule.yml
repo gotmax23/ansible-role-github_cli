@@ -56,7 +56,7 @@ jobs:
       - name: Set necessary sysctls for running multiple Systemd containers.
         run: |
           sudo sysctl -w fs.inotify.max_queued_events=204800
-          sudo sysctl -w fs.inotify.max_user_insances=204800
+          sudo sysctl -w fs.inotify.max_user_instances=204800
           sudo sysctl -w fs.inotify.max_user_watches=204800
 
       - name: Run molecule test
