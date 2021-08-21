@@ -50,6 +50,10 @@ Here are this role's variables and their default values, as set in [`defaults/ma
 ``` yaml
 {{ generator_defaults.content | b64decode }}
 ```
+{% if generator_links_md.content is defined %}
+
+{{ generator_links_md.content | b64decode }}
+{% endif %}
 
 ## Example Playbook
 ``` yaml

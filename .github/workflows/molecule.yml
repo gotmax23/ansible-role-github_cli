@@ -18,7 +18,7 @@ name: Lint code and run Molecule tests
     - cron: "15 0 * * 0"
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Git Repo
@@ -45,7 +45,76 @@ jobs:
         run: |
           pip3 install -U pip
           pip3 install wheel
-          pip3 install molecule molecule-podman ansible-core yamllint ansible-lint
+          pip3 install molecule molecule-podman ansible yamllint ansible-lint
+
+      - name: Run molecule lint
+        run: molecule lint -s single
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+
+  test:
+    runs-on: ubuntu-20.04
+    needs:
+      - lint
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - image: "archlinux"
+            tag: "any"
+          - image: "debian"
+            tag: "buster"
+          - image: "debian"
+            tag: "bullseye"
+          - image: "el"
+            tag: "7"
+          - image: "el"
+            tag: "8"
+          - image: "fedora"
+            tag: "33"
+          - image: "fedora"
+            tag: "34"
+          - image: "fedora"
+            tag: "35"
+          - image: "opensuse"
+            tag: "15.2"
+          - image: "opensuse"
+            tag: "15.3"
+          - image: "opensuse"
+            tag: "tumbleweed"
+          - image: "ubuntu"
+            tag: "bionic"
+          - image: "ubuntu"
+            tag: "focal"
+          - image: "ubuntu"
+            tag: "hirsute"
+    steps:
+      - name: Checkout Git Repo
+        uses: actions/checkout@v2
+
+      - name: "Set up Python 3.9"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Generate cache keys
+        id: keys
+        run: |
+          echo ::set-output name=pip_cache_dir::$(pip cache dir)
+          echo ::set-output name=date::$(date +%Y_%g)
+
+      - name: Pip Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.keys.outputs.pip_cache_dir }}
+          key: ansible-pip-${{ steps.keys.outputs.date }}
+
+      - name: Install pip packages
+        run: |
+          pip3 install -U pip
+          pip3 install wheel
+          pip3 install molecule molecule-podman ansible
 
       # This is necessary to allow running systemd in rootless containers.
       - name: Start systemd user service
@@ -53,16 +122,10 @@ jobs:
           loginctl enable-linger runner
           sleep 1
 
-      - name: Set necessary sysctls for running multiple Systemd containers.
-        run: |
-          sudo sysctl -w fs.inotify.max_queued_events=204800
-          sudo sysctl -w fs.inotify.max_user_instances=204800
-          sudo sysctl -w fs.inotify.max_user_watches=204800
-
       - name: Run molecule test
-        run: |
-          ansible-galaxy collection install containers.podman
-          molecule test -s all
+        run: molecule test -s single
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
+          image: "${{ matrix.os.image }}"
+          tag: "${{ matrix.os.tag }}"
