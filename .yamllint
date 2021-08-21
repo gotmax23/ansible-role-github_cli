@@ -15,5 +15,6 @@ rules:
 
 ignore: |
   .cache/
+  .github/workflows/molecule.yml
 
 # vim: set filetype=yaml:

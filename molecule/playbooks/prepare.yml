@@ -3,6 +3,13 @@
   hosts: all
   become: true
 
+  vars:
+    _github_cli_which_package:
+      Debian: debianutils
+      default: which
+    github_cli_which_package: "{{ _github_cli_which_package[ansible_os_family] | default(_github_cli_which_package['default']) }}"
+
+
   tasks:
     - name: Update apt cache
       when: ansible_pkg_mgr == "apt"
@@ -11,6 +18,5 @@
         cache_valid_time: 3600
 
     - name: Ensure which is installed (needed for verify)
-      when: ansible_os_family != "Debian"
       ansible.builtin.package:
-        name: which
+        name: "{{ github_cli_which_package }}"

@@ -3,6 +3,23 @@
   hosts: localhost
   gather_facts: false
 
+  vars:
+    generator_molecule_wflow_test:
+      skip_test_step: true
+      steps:
+        - name: "Molecule test: github_cli_state=present"
+          env:
+            github_cli_state: present
+          run: molecule test -s single --destroy never
+        - name: "Molecule test: github_cli_state=absent"
+          env:
+            github_cli_state: absent
+          run: molecule test -s single --destroy never
+        - name: Molecule destroy
+          if: always()
+          run: molecule destroy -s single
+
+
   roles:
     - gotmax23.generator
 

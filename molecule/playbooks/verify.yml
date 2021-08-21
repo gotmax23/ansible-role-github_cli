@@ -2,34 +2,26 @@
 - name: Verify
   hosts: all
 
+  vars:
+    github_cli_state: "{{ lookup('env', 'github_cli_state') | default('present', True) }}"
+
   tasks:
     - name: Check if Github CLI is present
-      register: gh_state
+      register: github_cli_presence
       changed_when: false
       failed_when: false
       ansible.builtin.command:
         cmd: which gh
 
-    - name: Ensure Github CLI is installed
+    - name: Ensure Pass is installed
+      when: github_cli_state == "present"
       ansible.builtin.assert:
         quiet: true
-        that: gh_state.rc == 0
+        that: github_cli_presence == 0
 
-    - name: Uninstall Github CLI
-      become: true
-      vars:
-        github_cli_state: absent
-      ansible.builtin.import_role:
-        name: "gotmax23.github_cli"
 
-    - name: Check if Github CLI is present
-      register: gh_state_2
-      changed_when: false
-      failed_when: false
-      ansible.builtin.command:
-        cmd: which gh
-
-    - name: Ensure Github CLI is uninstalled
+    - name: Ensure Pass is uninstalled
+      when: github_cli_state == "absent"
       ansible.builtin.assert:
         quiet: true
-        that: gh_state_2.rc != 0
+        that: github_cli_presence != 0

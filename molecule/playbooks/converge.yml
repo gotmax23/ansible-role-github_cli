@@ -2,6 +2,10 @@
 - name: Converge
   hosts: all
   become: true
+
+  vars:
+    github_cli_state: "{{ lookup('env', 'github_cli_state') | default('present', True) }}"
+
   tasks:
     - name: Install Github CLI
       vars:
