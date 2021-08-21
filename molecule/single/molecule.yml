@@ -15,7 +15,7 @@ lint: |
 driver:
   name: podman
 platforms:
-  - name: "github_cli-${image:-debian}-${tag:-latest}${TOX_ENVNAME}"
+  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-${image:-debian}-${tag:-latest}${TOX_ENVNAME}"
     image: "quay.io/gotmax23/${image:-debian}-systemd:${tag:-latest}"
     command: ""
     pre_build_image: true
