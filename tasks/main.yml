@@ -38,9 +38,9 @@
     - github_cli_install_method == "repo"
     - ansible_pkg_mgr == "apt"
   block:
-    - name: Ensure that apt-transport-https is installed (apt-based distros)
+    - name: Ensure that apt-transport-https and ca_certificates are installed (apt-based distros)
       ansible.builtin.apt:
-        name: [ "apt-transport-https" ]
+        name: [ "apt-transport-https", "ca-certificates" ]
 
     - name: Ensure that Apt keyring directory exists
       ansible.builtin.file:
@@ -55,7 +55,7 @@
       ansible.builtin.get_url:
         url: "{{ github_cli_apt_key_url }}"
         dest: "{{ github_cli_apt_key_dest }}"
-        user: root
+        owner: root
         group: root
         mode: "0644"
 
