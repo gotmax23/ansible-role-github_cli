@@ -38,9 +38,9 @@
     - github_cli_install_method == "repo"
     - ansible_pkg_mgr == "apt"
   block:
-    - name: Ensure that gpg, apt-transport-https, and curl are installed (apt-based distros)
+    - name: Ensure that apt-transport-https is installed (apt-based distros)
       ansible.builtin.apt:
-        name: [ "gpg", "apt-transport-https", "curl" ]
+        name: [ "apt-transport-https" ]
 
     - name: Ensure that Apt keyring directory exists
       ansible.builtin.file:
@@ -52,9 +52,12 @@
 
     - name: Import Github CLI Apt key
       when: github_cli_state == "present"
-      ansible.builtin.shell:
-        cmd: "{{ github_cli_apt_key_import_cmd }}"  # noqa command-instead-of-shell
-        creates: "{{ github_cli_apt_key_dest }}"
+      ansible.builtin.get_url:
+        url: "{{ github_cli_apt_key_url }}"
+        dest: "{{ github_cli_apt_key_dest }}"
+        user: root
+        group: root
+        mode: "0644"
 
     - name: Remove Github CLI Apt key if necesarry
       when: github_cli_state == "absent"

@@ -25,9 +25,9 @@ github_cli_rpm_repo_conf_dest: "{{ github_cli_rpm_repo_conf_dir }}/gh-cli.repo"
 #########
 
 ### Vars for Apt-based distros
-github_cli_apt_key_import_cmd: "curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o {{ github_cli_apt_key_dest }}"
-
 github_cli_apt_key_dir: "/usr/share/keyrings"
+
+github_cli_apt_key_url: "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
 
 github_cli_apt_key_dest: "{{ github_cli_apt_key_dir }}/githubcli-archive-keyring.gpg"
 
