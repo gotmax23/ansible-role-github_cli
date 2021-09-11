@@ -8,7 +8,5 @@
 
   tasks:
     - name: Install Github CLI
-      vars:
-        github_cli_state: present
       ansible.builtin.include_role:
         name: "gotmax23.github_cli"
