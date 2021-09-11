@@ -17,11 +17,11 @@
       when: github_cli_state == "present"
       ansible.builtin.assert:
         quiet: true
-        that: github_cli_presence == 0
+        that: github_cli_presence.rc == 0
 
 
     - name: Ensure Pass is uninstalled
       when: github_cli_state == "absent"
       ansible.builtin.assert:
         quiet: true
-        that: github_cli_presence != 0
+        that: github_cli_presence.rc != 0
