@@ -15,7 +15,7 @@
 [![MIT Licensed][badge-license]][link-license]
 [![Role {{ generator_galaxy_role }}][badge-role]][link-galaxy]
 [![Role Version][badge-version]][link-version]
-[![Commits since last version][badge-commits-since]][link-commits-since]
+[![Commits since last version][badge-commits-since]][link-version]
 [![Galaxy Role Quality][badge-quality]][link-galaxy]
 [![Galaxy Role Downloads][badge-downloads]][link-galaxy]
 [![Github Actions Molecule workflow status][badge-molecule-workflow]][link-molecule-workflow]
@@ -79,9 +79,8 @@ Maxwell G (@gotmax23)
 [badge-role]: https://img.shields.io/ansible/role/{{ generator_galaxy_id }}.svg
 [link-galaxy]: https://galaxy.ansible.com/{{ generator_namespace }}/{{ generator_role_name }}
 [badge-version]: https://img.shields.io/github/release/{{ generator_gh_repo }}.svg
-[link-version]: {{ generator_gh_repo_url }}/releases
+[link-version]: {{ generator_gh_repo_url }}/releases/latest
 [badge-commits-since]: https://img.shields.io/github/commits-since/{{ generator_gh_repo }}/latest.svg
-[link-commits-since]: {{ generator_gh_repo_url }}/commits/main
 [badge-quality]: https://img.shields.io/ansible/quality/{{ generator_galaxy_id }}.svg
 [badge-downloads]: https://img.shields.io/ansible/role/d/{{ generator_galaxy_id }}.svg
 [badge-molecule-workflow]: {{ generator_ci_molecule_url }}/badge.svg?branch=main
