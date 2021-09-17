@@ -7,20 +7,20 @@ dependency:
   options:
     role-file: requirements.yml
     requirements-file: requirements.yml
-    force: ${GALAXY_FORCE:-true}
+    force: ${GALAXY_FORCE:-false}
 lint: |
   set -e
   yamllint .
   ansible-lint
 driver:
-  name: podman
+  name: delegated
+  options:
+      ansible_connection_options:
+          ansible_connection: local
+      managed: false
 
 platforms:
-  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-${image:-debian}-${tag:-latest}${TOX_ENVNAME}"
-    image: "quay.io/gotmax23/${image:-debian}-systemd:${tag:-latest}"
-    command: ""
-    pre_build_image: true
-    systemd: true
+  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-${TOX_ENVNAME}"
 provisioner:
   name: ansible
   config_options:
