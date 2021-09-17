@@ -15,9 +15,9 @@ lint: |
 driver:
   name: delegated
   options:
-      ansible_connection_options:
-          ansible_connection: local
-      managed: false
+    ansible_connection_options:
+      ansible_connection: local
+    managed: false
 
 platforms:
   - name: "github_cli-${MOLECULE_SCENARIO_NAME}-${TOX_ENVNAME}"
