@@ -55,8 +55,8 @@ jobs:
 
   test:
     runs-on: ubuntu-20.04
-    # needs:
-    #   - lint
+    needs:
+      - lint
     strategy:
       fail-fast: false
       matrix:
@@ -120,7 +120,11 @@ jobs:
         run: |
           pip3 install -U pip
           pip3 install wheel
-          pip3 install molecule molecule-podman ansible-core
+          pip3 install molecule molecule-podman ansible-core yamllint ansible-lint
+
+      - name: Install containers.podman collection (molecule-podman dependency)
+        run: |
+          ansible-galaxy collection install containers.podman
 
       # This is necessary to allow running systemd in rootless containers.
       - name: Start systemd user service

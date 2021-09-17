@@ -15,9 +15,8 @@ rules:
 
 ignore: |
   .cache/
-  # These two files use the Jinja 2 `to_nice_yaml` filter which does not create
+  # This files use the Jinja 2 `to_nice_yaml` filter which does not create
   # yamllint compatible files.
-  molecule/localhost/molecule.yml
   .github/workflows/molecule.yml
 
 # vim: set filetype=yaml:
