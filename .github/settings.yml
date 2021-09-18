@@ -5,4 +5,4 @@
 repository:
   description: Ansible role that installs Github CLI (gh).
   homepage: "https://galaxy.ansible.com/gotmax23/github_cli"
-  topics: ansible, molecule, ansible-role, role
+  topics: github, gh, github_cli, github-cli, git, go, dev, development, ansible, molecule, ansible-role, role

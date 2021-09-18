@@ -31,7 +31,15 @@ galaxy_info:
       versions:
         - all
 
-  galaxy_tags: []
+  galaxy_tags:
+    - github
+    - gh
+    - github_cli
+    - github-cli
+    - git
+    - go
+    - dev
+    - development
 
 dependencies: []
 
