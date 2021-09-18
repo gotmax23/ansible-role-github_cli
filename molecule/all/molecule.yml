@@ -21,6 +21,16 @@ platforms:
     command: ""
     pre_build_image: true
     systemd: true
+  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-debian-buster"
+    image: "quay.io/gotmax23/debian-systemd:buster"
+    command: ""
+    pre_build_image: true
+    systemd: true
+  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-debian-bullseye"
+    image: "quay.io/gotmax23/debian-systemd:bullseye"
+    command: ""
+    pre_build_image: true
+    systemd: true
   - name: "github_cli-${MOLECULE_SCENARIO_NAME}-debian-bookworm"
     image: "quay.io/gotmax23/debian-systemd:bookworm"
     command: ""
