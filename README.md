@@ -84,6 +84,12 @@ github_cli_apt_repo_codename: stable
   become: true
 
   tasks:
+    - name: Update apt cache
+      when: ansible_pkg_mgr == "apt"
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
     - name: Install Github CLI
       ansible.builtin.include_role:
         name: "gotmax23.github_cli"
