@@ -16,20 +16,26 @@ galaxy_info:
         - any
     - name: Debian
       versions:
-        - all
+        - buster
+        - bullseye
+        - bookworm
     - name: EL
       versions:
         - 7
         - 8
     - name: Fedora
       versions:
-        - all
+        - 33
+        - 34
+        - 35
     - name: opensuse
       versions:
         - all
     - name: Ubuntu
       versions:
-        - all
+        - bionic
+        - focal
+        - hirsute
 
   galaxy_tags:
     - github
