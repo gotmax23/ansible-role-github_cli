@@ -19,7 +19,6 @@
           if: always()
           run: molecule destroy -s single
 
-
   roles:
     - gotmax23.generator
 
