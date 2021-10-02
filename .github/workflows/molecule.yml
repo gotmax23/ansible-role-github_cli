@@ -52,6 +52,7 @@ jobs:
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
+          GALAXY_FORCE: true
 
   test:
     runs-on: ubuntu-20.04
@@ -94,6 +95,7 @@ jobs:
     env:
       PY_COLORS: "1"
       ANSIBLE_FORCE_COLOR: "1"
+      GALAXY_FORCE: true
       image: "${{ matrix.os.image }}"
       tag: "${{ matrix.os.tag }}"
 
