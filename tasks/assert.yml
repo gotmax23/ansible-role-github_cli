@@ -28,7 +28,7 @@
       - github_cli_apt_repo_codename is defined
       - github_cli_apt_repo_codename is string
 
-- name: Ensure that Guthub CLI supports ansible_architecture
+- name: Ensure that Github CLI supports ansible_architecture
   ansible.builtin.assert:
     quiet: true
     that: ansible_architecture in [ "i386", "x86_64", "aarch64", "armv7l", "armv6l" ]
