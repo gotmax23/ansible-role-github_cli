@@ -98,6 +98,7 @@ github_cli_apt_repo_codename: stable
 
 ## Compatibility
 This role is compatible with the following distros:
+
 |distro|versions|
 |------|--------|
 |Archlinux|any|
