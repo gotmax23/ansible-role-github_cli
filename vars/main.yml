@@ -34,7 +34,7 @@ github_cli_apt_key_dest: "{{ github_cli_apt_key_dir }}/githubcli-archive-keyring
 github_cli_apt_repo: "deb [arch={{ github_cli_dpkg_arch.stdout }} signed-by={{ github_cli_apt_key_dest }}] https://cli.github.com/packages {{ github_cli_apt_repo_codename }} main"
 
 ##################
-## install_method: distro_packages
+## install_method: distro_package
 _github_cli_distro_package_name:
   default: unsupported
   Archlinux: github-cli
