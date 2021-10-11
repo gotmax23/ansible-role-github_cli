@@ -147,4 +147,3 @@ jobs:
       - if: always()
         name: Molecule destroy
         run: molecule destroy -s single
-
