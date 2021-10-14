@@ -1,6 +1,10 @@
 # Ansible Role: github_cli
-[![MIT Licensed][badge-license]][link-license]
 [![Role gotmax23.github_cli][badge-role]][link-galaxy]
+[![Github Repo][badge-github-repo]][link-github-repo]
+[![SourceHut Repo][badge-srht-repo]][link-srht-repo]
+[![MIT Licensed][badge-license]][link-license]
+[![Github Open Issues][badge-github-issues]][link-github-issues]
+[![Github Open PRs][badge-github-prs]][link-github-prs]
 [![Role Version][badge-version]][link-version]
 [![Commits since last version][badge-commits-since]][link-version]
 [![Galaxy Role Quality][badge-quality]][link-galaxy]
@@ -10,10 +14,30 @@
 
 Ansible role that installs Github CLI (gh).
 
+## Beta Warning
+**This role is currently in beta and is not intended for production use. Breaking changes may occur between releases, so please make sure to read the release notes.**
 ## Requirements
 
-For right now, I only test this role using the latest release of the `ansible` pip package, which includes all the collections that are no longer part of `ansible-core`. This is the supported method. However, if you choose to use `ansible-core` or still use Ansible 2.9, you must manually install the following collections:
-- community.general
+This role depends on certain collections that are not included in ansible-core.
+
+
+To install this role's requirements, create a `requirements.yml` file with the contents below and run the following commands:
+
+``` shell
+# ansible-base/ansible-core 2.10 and above
+ansible-galaxy install -r requirements.yml
+
+# ansible 2.9
+ansible-galaxy collection install -r requirements.yml
+```
+
+``` yaml
+# requirements.yml
+---
+collections:
+  - community.general
+
+```
 
 ## Role Variables
 
@@ -114,15 +138,23 @@ This role is compatible with the following distros:
 ## Author
 Maxwell G (@gotmax23)
 
-[badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-github_cli.svg
-[link-license]: https://github.com/gotmax23/ansible-role-github_cli/blob/main/LICENSE
-[badge-role]: https://img.shields.io/ansible/role/55882.svg
+[badge-role]: https://img.shields.io/ansible/role/55882.svg?logo=ansible
 [link-galaxy]: https://galaxy.ansible.com/gotmax23/github_cli
-[badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-github_cli.svg
+[badge-github-repo]: https://img.shields.io/static/v1?label=GitHub&message=repo&color=blue&logo=github
+[link-github-repo]: https://github.com/gotmax23/ansible-role-github_cli
+[badge-srht-repo]: https://img.shields.io/static/v1?label=SourceHut&message=repo&color=blue&logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgdmlld0JveD0iMCAwIDUxMiA1MTIiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzUxIgogICBzb2RpcG9kaTpkb2NuYW1lPSJzb3VyY2VodXQtd2hpdGUuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjEgKGM2OGUyMmMzODcsIDIwMjEtMDUtMjMpIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM1NSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzUzIgogICAgIHBhZ2Vjb2xvcj0iIzUwNTA1MCIKICAgICBib3JkZXJjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJvcGFjaXR5PSIxIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMSIKICAgICBzaG93Z3JpZD0iZmFsc2UiCiAgICAgaW5rc2NhcGU6em9vbT0iMS42NTQyOTY5IgogICAgIGlua3NjYXBlOmN4PSIyNTYiCiAgICAgaW5rc2NhcGU6Y3k9IjI1NiIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTA1OSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzUxIiAvPgogIDxwYXRoCiAgICAgZD0iTTI1NiA4QzExOSA4IDggMTE5IDggMjU2czExMSAyNDggMjQ4IDI0OCAyNDgtMTExIDI0OC0yNDhTMzkzIDggMjU2IDh6bTAgNDQ4Yy0xMTAuNSAwLTIwMC04OS41LTIwMC0yMDBTMTQ1LjUgNTYgMjU2IDU2czIwMCA4OS41IDIwMCAyMDAtODkuNSAyMDAtMjAwIDIwMHoiCiAgICAgaWQ9InBhdGg0OSIKICAgICBzdHlsZT0iZmlsbDojZmZmZmZmIiAvPgo8L3N2Zz4K
+[link-srht-repo]: https://git.sr.ht/~gotmax23/ansible-role-github_cli
+[badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-github_cli.svg?logo=github
+[link-license]: https://github.com/gotmax23/ansible-role-github_cli/blob/main/LICENSE
+[badge-github-issues]: https://img.shields.io/github/issues/gotmax23/ansible-role-github_cli.svg?logo=github
+[link-github-issues]: https://github.com/gotmax23/ansible-role-github_cli/issues
+[badge-github-prs]: https://img.shields.io/github/issues-pr/gotmax23/ansible-role-github_cli.svg?logo=github
+[link-github-prs]: https://github.com/gotmax23/ansible-role-github_cli/pulls
+[badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-github_cli.svg?logo=github
 [link-version]: https://github.com/gotmax23/ansible-role-github_cli/releases/latest
-[badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-github_cli/latest.svg
-[badge-quality]: https://img.shields.io/ansible/quality/55882.svg
-[badge-downloads]: https://img.shields.io/ansible/role/d/55882.svg
+[badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-github_cli/latest.svg?logo=github
+[badge-quality]: https://img.shields.io/ansible/quality/55882.svg?logo=ansible
+[badge-downloads]: https://img.shields.io/ansible/role/d/55882.svg?logo=ansible
 [badge-molecule-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml/badge.svg?branch=main
 [link-molecule-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/molecule.yml
 [badge-galaxy-workflow]: https://github.com/gotmax23/ansible-role-github_cli/actions/workflows/galaxy.yml/badge.svg
