@@ -39,4 +39,12 @@ _github_cli_distro_package_name:
   default: unsupported
   Archlinux: github-cli
   "openSUSE Tumbleweed": gh
+  Fedora: gh
 github_cli_distro_package_name: "{{ _github_cli_distro_package_name[ansible_distribution] | default(_github_cli_distro_package_name['default']) }}"
+
+__github_cli_enablerepo:
+  dnf: "{{ github_cli_enablerepo }}"
+  yum: "{{ github_cli_enablerepo }}"
+  default: ''
+
+_github_cli_enablerepo: "{{ __github_cli_enablerepo[ansible_pkg_mgr] | default(__github_cli_enablerepo['default']) }}"

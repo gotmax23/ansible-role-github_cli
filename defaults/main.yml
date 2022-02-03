@@ -26,3 +26,6 @@ github_cli_check_rpm_key_fingerprint: true
 # See [here][1] for more information.
 # This role's default is based on Github's recommendation.
 github_cli_apt_repo_codename: stable
+
+# On Yum/Dnf: Pass `enablerepo` to `package` module.
+github_cli_enablerepo: omit

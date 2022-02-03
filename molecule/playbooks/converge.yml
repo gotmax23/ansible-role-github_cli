@@ -4,9 +4,27 @@
   become: true
 
   vars:
-    github_cli_state: "{{ lookup('env', 'github_cli_state') | default('present', True) }}"
+    github_cli_molecule_env_vars:
+      - github_cli_install_method
+      - github_cli_state
+      - github_cli_check_rpm_key_fingerprint
+      - github_cli_apt_repo_codename
+      - github_cli_enablerepo
 
   tasks:
+    - name: Set role variables if they are defined as env variables
+      loop: "{{ github_cli_molecule_env_vars }}"
+      when:
+        - lookup('env', item) is string
+        - lookup('env', item) != ""
+      ansible.builtin.set_fact:
+        "{{ item }}": "{{ lookup('env', item) }}"
+
+    -
+      loop: "{{ github_cli_molecule_env_vars }}"
+      ansible.builtin.debug:
+        msg: "{{ lookup('vars', item, default='') }}"
+
     - name: Install Github CLI
       ansible.builtin.include_role:
         name: "gotmax23.github_cli"

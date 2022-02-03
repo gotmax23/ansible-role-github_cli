@@ -14,6 +14,6 @@ This role allows you to choose which source to install Github CLI from. You may 
 
 **Description:** This installs Github CLI from the distribution's repositories, if it's available.
 
-**Supported Distributions:** Archlinux and OpenSUSE Tumbleweed
+**Supported Distributions:** Archlinux, OpenSUSE Tumbleweed, and Fedora
 
 **Default:** Only for Archlinux where `github_cli_install_method=repo` is not supported.
