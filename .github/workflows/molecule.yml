@@ -17,12 +17,18 @@ name: Lint code and run Molecule tests
   schedule:
     - cron: "25 22 12 * *"
 
+defaults:
+  run:
+    working-directory: gotmax23.github_cli
+
 jobs:
   lint:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Git Repo
         uses: actions/checkout@v2
+        with:
+          path: gotmax23.github_cli
 
       - name: "Set up Python 3.9"
         uses: actions/setup-python@v2
@@ -102,6 +108,8 @@ jobs:
     steps:
       - name: Checkout Git Repo
         uses: actions/checkout@v2
+        with:
+          path: gotmax23.github_cli
 
       - name: "Set up Python 3.9"
         uses: actions/setup-python@v2
