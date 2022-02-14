@@ -6,8 +6,6 @@
   connection: local
   become: false
 
-# - debug: var=_github_cli_enablerepo
-# - fail:
 - name: "{{ installw }} Github CLI repo on RPM-based distributions"
   when:
     - github_cli_install_method == "repo"

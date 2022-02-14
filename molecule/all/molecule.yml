@@ -81,11 +81,6 @@ platforms:
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-ubuntu-hirsute"
-    image: "quay.io/gotmax23/ubuntu-systemd:hirsute"
-    command: ""
-    pre_build_image: true
-    systemd: true
 provisioner:
   name: ansible
   config_options:

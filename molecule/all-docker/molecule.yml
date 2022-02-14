@@ -172,18 +172,6 @@ platforms:
       - /var/lib/journal
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-ubuntu-hirsute"
-    image: "quay.io/gotmax23/ubuntu-systemd:hirsute"
-    command: ""
-    pre_build_image: true
-    tmpfs:
-      - /run
-      - /run/lock
-      - /tmp
-      - /sys/fs/cgroup/systemd
-      - /var/lib/journal
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
   config_options:

@@ -96,8 +96,6 @@ jobs:
             tag: "bionic"
           - image: "ubuntu"
             tag: "focal"
-          - image: "ubuntu"
-            tag: "hirsute"
     env:
       PY_COLORS: "1"
       ANSIBLE_FORCE_COLOR: "1"
