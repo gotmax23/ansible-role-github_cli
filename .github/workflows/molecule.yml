@@ -77,8 +77,6 @@ jobs:
           - image: "debian"
             tag: "bookworm"
           - image: "el"
-            tag: "7"
-          - image: "el"
             tag: "8"
           - image: "fedora"
             tag: "34"
