@@ -20,7 +20,7 @@ driver:
     managed: false
 
 platforms:
-  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-${TOX_ENVNAME}"
+  - name: "github_cli-${MOLECULE_SCENARIO_NAME}"
 provisioner:
   name: ansible
   config_options:

@@ -138,7 +138,7 @@ This role is compatible with the following distros:
 |Debian|buster, bullseye, bookworm|
 |EL|7, 8|
 |Fedora|34, 35, 36|
-|opensuse|15.2, 15.3, tumbleweed|
+|opensuse|15.3, tumbleweed|
 |Ubuntu|bionic, focal|
 
 ## License

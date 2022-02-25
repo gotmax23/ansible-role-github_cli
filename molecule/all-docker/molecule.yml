@@ -112,18 +112,6 @@ platforms:
       - /var/lib/journal
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: "github_cli-${MOLECULE_SCENARIO_NAME}-opensuse-15.2"
-    image: "quay.io/gotmax23/opensuse-systemd:15.2"
-    command: ""
-    pre_build_image: true
-    tmpfs:
-      - /run
-      - /run/lock
-      - /tmp
-      - /sys/fs/cgroup/systemd
-      - /var/lib/journal
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: "github_cli-${MOLECULE_SCENARIO_NAME}-opensuse-15.3"
     image: "quay.io/gotmax23/opensuse-systemd:15.3"
     command: ""
