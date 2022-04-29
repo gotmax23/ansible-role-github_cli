@@ -15,6 +15,9 @@
       - github_cli_install_method in [ "repo", "distro_package" ]
 
 - name: Ensure that github_cli_check_rpm_key_fingerprint is set correctly
+  when:
+    - github_cli_install_method == "repo"
+    - ansible_pkg_mgr in [ "dnf", "yum", "zypper" ]
   ansible.builtin.assert:
     quiet: true
     that:
@@ -22,6 +25,9 @@
       - github_cli_check_rpm_key_fingerprint is boolean
 
 - name: Ensure that github_cli_apt_repo_codename is set correctly
+  when:
+    - github_cli_install_method == "repo"
+    - ansible_pkg_mgr == "apt"
   ansible.builtin.assert:
     quiet: true
     that:
