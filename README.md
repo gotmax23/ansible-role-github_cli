@@ -85,6 +85,7 @@ github_cli_state: present
 # By default, `github_cli_install_method` is dynamically assigned based on your distribution.
 _github_cli_install_method:
   Archlinux: distro_package  # Default for Archlinux
+  Fedora: distro_package
   default: repo  # Default for all other distros
 
 # As explained above, you may override this variable.

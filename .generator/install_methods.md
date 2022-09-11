@@ -8,7 +8,7 @@ This role allows you to choose which source to install Github CLI from. You may 
 
 **Supported Distributions:** The apt repository supports all Debian derivatives. The RPM repository supports RPM distros such as Fedora, Enterprise Linux (CentOS, Almalinux, Rocky Linux, RHEL, etc), OpenSUSE Leap, and OpenSUSE Tumbleweed.
 
-**Default:** Yes (for all distributions except Archlinux, where this option is not supported.)
+**Default:** All distributions except Archlinux and Fedora
 
 #### `github_cli_install_method=distro_package`
 
@@ -16,4 +16,4 @@ This role allows you to choose which source to install Github CLI from. You may 
 
 **Supported Distributions:** Archlinux, OpenSUSE Tumbleweed, and Fedora
 
-**Default:** Only for Archlinux where `github_cli_install_method=repo` is not supported.
+**Default:** Archlinux and Fedora

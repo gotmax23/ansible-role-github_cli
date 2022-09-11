@@ -9,9 +9,9 @@ installw: "{{ _installw[github_cli_state] }}"
 
 ## install_method: repo
 ### Vars for RPM-based distros.
-github_cli_rpm_key_url: "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc99b11deb97541f0"
+github_cli_rpm_key_url: "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059"
 
-github_cli_rpm_key_fingerprint: "2CA3 2056 ED20 6CB8 1F44 A8CA C99B 11DE B975 41F0"
+github_cli_rpm_key_fingerprint: "2C61 0620 1985 B60E 6C7A C873 23F3 D4EA 7571 6059"
 
 github_cli_rpm_repo_conf_url: "https://cli.github.com/packages/rpm/gh-cli.repo"
 
